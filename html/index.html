@@ -1,32 +1,74 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
+<head>
     <title>GrowLightUserInterface</title>
-    </head>
-<body bgcolor="black" text="white">
-   <!--side navigation bar-->
-    <div style="position: fixed; left: 0; top: 0; width: 200px; height: 100%; background-color: #333; padding-top: 20px;">
-        <a href="#dashboard" style="padding: 10px 15px; text-decoration: none; color: white; display: block;">Dashboard</a>
-        <a href="#analytics" style="padding: 10px 15px; text-decoration: none; color: white; display: block;">Analytics</a>
-        <a href="#settings" style="padding: 10px 15px; text-decoration: none; color: white; display: block;">Settings</a>
+    <style>
+        body { background: black; color: white; }
+        .sidebar {
+            position: fixed; left: 0; top: 0; width: 150px; height: 100%;
+            background-color: #333; padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 15px; text-decoration: none; color: white; display: block;
+        }
+        .content { margin-left: 220px; padding: 20px; }
+        .hidden { display: none; }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('analytics').classList.add('hidden');
+            document.getElementById('settings').classList.add('hidden');
+            // Show the selected section
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+        window.onload = function() {
+            showSection('dashboard'); // Show dashboard by default
+        }
+    </script>
+</head>
+<body>  
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" onclick="showSection('dashboard'); return false;" style="font-size:25px;">Dashboard</a>
+        <a href="#" onclick="showSection('analytics'); return false;" style="font-size:25px;">Analytics</a>
+        <a href="#" onclick="showSection('settings'); return false;" style="font-size:25px;">Settings</a>
+    </div>
 
-    <!--main content-->
-    </div>
-    <div style="margin-left: 220px; padding: 20px;">
-        <h1>Overview</h1>
-        <p>Water</p>
-        <p>Temperature</p>
+    <!-- Dashboard Content -->
+    <div id="dashboard" class="content">
+     <h1 style="font-size:50px;">Overview</h1>
 
-        <p>%</p>
-        <p>°C</p>
+        <div class="row">
+        
+         <div class="card">
+              <h3>Water</h3>
+              <p><span id="water-value">0</span> %</p>
+         </div>
+
+          <div class="card">
+               <h3>Temperature</h3>
+              <p><span id="temp-value">0</span> °C</p>
+        </div>
+
     </div>
-    <!--Temp chart-->
-    <div style="position: fixed ; left: 220px; top: 150px; width: calc(100% - 240px); padding: 20px;">
-        <img src="temp_chart.png" alt="Temperature Chart" style="width:100%; max-width:600px;">
+
+    <br>
+    <img src="temp_chart.png" alt="Temperature Chart" style="width:100%; max-width:600px;">
+    <img src="water.png" alt="Water Level Chart" style="width: 200px; max-width:500px;">
     </div>
-    <!--Water chart-->
-    <div style="position: fixed ; left: 600px; top: 20px; width: calc(100% - 240px); padding: 20px;">
-        <img src="water.png" alt="Water Level Chart" style="width:100%; max-width:600px;">
+
+    <!-- Analytics Content -->
+    <div id="analytics" class="content hidden">
+        <h1>Analytics Page</h1>
+        <p>Analytics content goes here.</p>
+    </div>
+
+    <!-- Settings Content -->
+    <div id="settings" class="content hidden">
+        <h1>Settings Page</h1>
+        <p>Settings content goes here.</p>
+    </div>
 </body>
 </html>
