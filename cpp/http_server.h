@@ -36,6 +36,10 @@
 
 #include <string.h>
 
+#ifndef ESP_PLATFORM
+    #include <stdio.h>
+#endif
+
 // Configuration - Aggressively minimized for ESP32
 #ifndef HTTP_PORT
 #define HTTP_PORT 8080  // Use 8080 for VS Code testing (80 for ESP32)
@@ -47,7 +51,7 @@
 
 // Ultra-minimal buffer sizes
 #ifndef HTTP_REQUEST_BUFFER
-#define HTTP_REQUEST_BUFFER 128  // "GET /data HTTP/1.1\r\n\r\n" = 24 bytes
+#define HTTP_REQUEST_BUFFER 512  // Browsers send many headers (User-Agent, Accept, etc.)
 #endif
 
 #ifndef HTTP_RESPONSE_BUFFER
@@ -86,14 +90,14 @@ static char g_response_buffer[HTTP_RESPONSE_BUFFER];
 #endif
 
 // Pre-calculated constant headers
-static const char g_http_200_html[] = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: ";
+static const char g_http_200_html[] = "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: ";
 static const char g_http_200_json[] = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: ";
 static const char g_http_close[] = "\r\nConnection: close\r\n\r\n";
 static const char g_http_404[] = "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 9\r\nConnection: close\r\n\r\nNot Found";
 
 // Ultra-minified HTML - Aggressively compressed
 static const char g_html_page[] = 
-"<!DOCTYPE html><html><head><title>ESP32</title><style>"
+"<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>ESP32</title><style>"
 "body{background:#000;color:#fff;margin:0;font:14px sans-serif}"
 ".s{position:fixed;left:0;top:0;width:120px;height:100%;background:#333;padding-top:15px}"
 ".s a{padding:8px 10px;text-decoration:none;color:#fff;display:block;font-size:18px}"
@@ -109,7 +113,7 @@ static const char g_html_page[] =
 "<div id=a class=c>"
 "<h1>Overview</h1>"
 "<div class=r>"
-"<div class=d><h3>Temp</h3><p><span id=t>0</span>°C</p></div>"
+"<div class=d><h3>Temp</h3><p><span id=t>0</span>&deg;C</p></div>"
 "<div class=d><h3>Water</h3><p><span id=w>0</span>%</p></div>"
 "</div></div>"
 "<div id=b class='c h'><h1>Analytics</h1></div>"

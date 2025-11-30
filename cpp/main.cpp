@@ -35,50 +35,26 @@ static inline void update_sensors() {
 int main() {
     srand((unsigned)time(NULL));
     
-#ifndef ESP_PLATFORM
-    printf("HTTP Server starting on port %d...\n", HTTP_PORT);
-#endif
-    
     if (!http_server_init()) {
-#ifndef ESP_PLATFORM
-        printf("Failed to initialize server\n");
-        printf("Error code: %d\n", WSAGetLastError());
-#endif
         return 1;
     }
     
 #ifndef ESP_PLATFORM
-    printf("Server initialized successfully\n");
-#endif
-    
-#ifndef ESP_PLATFORM
-    // Display local network info (VS Code testing only)
     char hostname[256];
     if (gethostname(hostname, sizeof(hostname)) == 0) {
         struct hostent* host = gethostbyname(hostname);
-        const char* ip = "127.0.0.1";
         if (host && host->h_addr_list[0]) {
             struct in_addr addr;
             memcpy(&addr, host->h_addr_list[0], sizeof(addr));
-            ip = inet_ntoa(addr);
+            printf("http://%s:%d\n", inet_ntoa(addr), HTTP_PORT);
         }
-        printf("Access at: http://localhost:%d or http://%s:%d\n", HTTP_PORT, ip, HTTP_PORT);
-    } else {
-        printf("Access at: http://localhost:%d\n", HTTP_PORT);
     }
-    printf("Press Ctrl+C to stop\n\n");
 #endif
     
     // Main loop
-    int count = 0;
     while (1) {
         update_sensors();
         http_server_poll();
-#ifndef ESP_PLATFORM
-        if (++count % 100 == 0) {
-            printf("Loop iteration %d\n", count);
-        }
-#endif
         SLEEP_MS(50);  // 50ms = 20Hz polling rate (balance responsiveness vs CPU)
     }
     
