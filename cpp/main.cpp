@@ -1,74 +1,85 @@
 #include "http_server.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
 #ifdef _WIN32
+    #include <winsock2.h>
     #include <windows.h>
+    #include <stdio.h>
     #define SLEEP_MS(ms) Sleep(ms)
 #else
     #include <unistd.h>
+    #include <netdb.h>
+    #include <arpa/inet.h>
+    #include <stdio.h>
     #define SLEEP_MS(ms) usleep((ms)*1000)
 #endif
 
-// Simulate sensor readings
-static float simulate_temperature() {
-    static float temp = 22.0f;
-    temp += (rand() % 20 - 10) / 10.0f; // Random walk
-    if (temp < 15.0f) temp = 15.0f;
-    if (temp > 35.0f) temp = 35.0f;
-    return temp;
-}
+// Minimal sensor simulation (optimized for ESP32)
+static float g_temp = 22.0f, g_water = 50.0f;
 
-static float simulate_water() {
-    static float water = 50.0f;
-    water += (rand() % 10 - 5) / 10.0f;
-    if (water < 0.0f) water = 0.0f;
-    if (water > 100.0f) water = 100.0f;
-    return water;
+static inline void update_sensors() {
+    // Lightweight random walk
+    g_temp += (rand() & 1 ? 0.5f : -0.5f);
+    if (g_temp < 18.0f) g_temp = 18.0f;
+    if (g_temp > 28.0f) g_temp = 28.0f;
+    
+    g_water += (rand() & 1 ? 1.0f : -1.0f);
+    if (g_water < 30.0f) g_water = 30.0f;
+    if (g_water > 70.0f) g_water = 70.0f;
+    
+    http_setTemperature(g_temp);
+    http_setWater(g_water);
 }
 
 int main() {
-    // Initialize random seed
-    srand((unsigned int)time(NULL));
+    srand((unsigned)time(NULL));
     
-    printf("Starting HTTP Server on port %d...\n", HTTP_PORT);
+#ifndef ESP_PLATFORM
+    printf("HTTP Server starting on port %d...\n", HTTP_PORT);
+#endif
     
     if (!http_server_init()) {
-        printf("Failed to initialize HTTP server\n");
+#ifndef ESP_PLATFORM
+        printf("Failed to initialize server\n");
+        printf("Error code: %d\n", WSAGetLastError());
+#endif
         return 1;
     }
     
-    // Get local IP address
+#ifndef ESP_PLATFORM
+    printf("Server initialized successfully\n");
+#endif
+    
+#ifndef ESP_PLATFORM
+    // Display local network info (VS Code testing only)
     char hostname[256];
-    gethostname(hostname, sizeof(hostname));
-    
-    struct hostent* host = gethostbyname(hostname);
-    const char* local_ip = "127.0.0.1";
-    if (host && host->h_addr_list[0]) {
-        struct in_addr addr;
-        memcpy(&addr, host->h_addr_list[0], sizeof(struct in_addr));
-        local_ip = inet_ntoa(addr);
+    if (gethostname(hostname, sizeof(hostname)) == 0) {
+        struct hostent* host = gethostbyname(hostname);
+        const char* ip = "127.0.0.1";
+        if (host && host->h_addr_list[0]) {
+            struct in_addr addr;
+            memcpy(&addr, host->h_addr_list[0], sizeof(addr));
+            ip = inet_ntoa(addr);
+        }
+        printf("Access at: http://localhost:%d or http://%s:%d\n", HTTP_PORT, ip, HTTP_PORT);
+    } else {
+        printf("Access at: http://localhost:%d\n", HTTP_PORT);
     }
-    
-    printf("\n===========================================\n");
-    printf("Server running and accessible at:\n");
-    printf("  Local:   http://localhost:%d\n", HTTP_PORT);
-    printf("  Network: http://%s:%d\n", local_ip, HTTP_PORT);
-    printf("===========================================\n");
     printf("Press Ctrl+C to stop\n\n");
+#endif
     
-    // Main loop: Poll for HTTP requests and update sensor data
+    // Main loop
+    int count = 0;
     while (1) {
-        // Update sensor values
-        http_setTemperature(simulate_temperature());
-        http_setWater(simulate_water());
-        
-        // Process HTTP requests (non-blocking)
+        update_sensors();
         http_server_poll();
-        
-        // Small delay to prevent CPU spinning
-        SLEEP_MS(50);
+#ifndef ESP_PLATFORM
+        if (++count % 100 == 0) {
+            printf("Loop iteration %d\n", count);
+        }
+#endif
+        SLEEP_MS(50);  // 50ms = 20Hz polling rate (balance responsiveness vs CPU)
     }
     
     http_server_shutdown();
