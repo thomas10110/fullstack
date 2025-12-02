@@ -1,7 +1,10 @@
 {
     "launch": {
-        
+
         "configurations": [],
         "compounds": []
+    },
+    "files.associations": {
+        "iostream": "cpp"
     }
 }
