@@ -1,6 +1,8 @@
 {
     "launch": {
         "editor.acceptSuggestionOnCommitCharacter": false,
+        "editor.autoClosingBrackets": false,
+        "editor.suggestOnTriggerCharacters": false,
         "configurations": [],
         "compounds": []
     }
