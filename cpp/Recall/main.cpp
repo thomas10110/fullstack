@@ -17,6 +17,9 @@ std::cout << "How many are you buying?" << std::endl;
 std::cin >> quantity ;
 
 total_cost = item_price*quantity;
+if (total_cost > 20){
+        total_cost = total_cost * 0.9;
+    }
 std::cout << "----------------------------------" << std::endl;
 std::cout << "RECEIPT:" << std::endl;
 std::cout << "Item:" << item << std::endl;
