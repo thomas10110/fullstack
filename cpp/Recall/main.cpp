@@ -111,7 +111,6 @@ Loop 1 (Input): Use a for loop to ask the user for a grade 5 times and save it i
 Loop 2 (Calculation): Use another for loop to go through the array, read the numbers back, and add them to your sum variable.
 Math: Calculate the average (Sum / 5).
 Output: Print the average.
-*/
 
 int grades [5];
 int sum {};
@@ -133,6 +132,16 @@ average = sum / 5.0;
     std::cout << "----------------" << std::endl;
     std::cout << "Total Sum: " << sum << std::endl;
     std::cout << "Average: " << average << std::endl;
+
+*/
+
+std::string car[] = {"Audi","Bmw","Porshe"}; //can have only same data type no numbers in strign etc..
+
+std::cout << car;   //adress
+std::cout << car [1]; //element in array
+
+
+
 
 return 0;
 }
