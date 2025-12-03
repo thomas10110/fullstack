@@ -83,7 +83,6 @@ Ask the user "Guess the number:".
 IF the guess is too high, print "Too high!".
 IF the guess is too low, print "Too low!".
 IF the guess is correct, print "You won!" and break the loop.
-*/
 
 int secret_number = 32;
 int guess {};
@@ -103,6 +102,37 @@ while (true) {
         std::cout << "Too low!" << std::endl;
     }
 }
+
+The Goal: Create a program that asks the user to enter 5 different grades, stores them in an array, and then calculates the average score.
+Requirements
+Declare an array of integers with size 5 (e.g., int grades[5];).
+Create a variable for the sum (initialize it to 0!).
+Loop 1 (Input): Use a for loop to ask the user for a grade 5 times and save it into the array (using cin >> grades[i]).
+Loop 2 (Calculation): Use another for loop to go through the array, read the numbers back, and add them to your sum variable.
+Math: Calculate the average (Sum / 5).
+Output: Print the average.
+*/
+
+int grades [5];
+int sum {};
+double average;
+
+std::cout << "Please enter 5 grades:" << std::endl;
+
+for (int i = 0;   i < 5; i++) {
+        std::cout << "Enter grade " << i + 1 << ": ";   
+        std::cin >> grades[i];
+}
+
+for (int i = 0; i < 5; i++) {
+        // ERROR FIX: Add the VALUE inside the slot to the sum
+        sum = sum + grades[i]; 
+    }
+average = sum / 5.0;
+
+    std::cout << "----------------" << std::endl;
+    std::cout << "Total Sum: " << sum << std::endl;
+    std::cout << "Average: " << average << std::endl;
 
 return 0;
 }
