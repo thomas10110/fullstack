@@ -75,30 +75,34 @@ else {
 }
 
 
-
-
-
-
-
+Create an integer variable secret_number and set it to whatever you want (e.g., 77).
+Create an integer variable guess.
+Start a Loop: The code inside must repeat forever (or until the game is won).
+Inside the loop:
+Ask the user "Guess the number:".
+IF the guess is too high, print "Too high!".
+IF the guess is too low, print "Too low!".
+IF the guess is correct, print "You won!" and break the loop.
 */
 
+int secret_number = 32;
+int guess {};
 
+while (true) {
+    std::cout << "Guess the number: ";
+    std::cin >> guess;
+    
+    if (guess == secret_number) {
+        std::cout << "You won!";
+        break;
+    }
+    else if (guess > secret_number) {
+        std::cout << "Too high!" << std::endl;
+    }
+    else {
+        std::cout << "Too low!" << std::endl;
+    }
+}
 
 return 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
