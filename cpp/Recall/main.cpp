@@ -2,7 +2,7 @@
 #include <string>
 
 int main() {
-
+/*
 std::string item {};
 double item_price {};
 double quantity {};
@@ -29,5 +29,22 @@ std::cout << "----------------------------------" << std::endl;
 
 
 return 0;
+*/
+
+//Task: Ask for an integer. Check if it is Even or Odd and print the result.
+
+int x {};
+
+std::cout << "Input number:" << std::endl;
+std::cin >> x;
+
+if (x % 2 == 0) {
+    std::cout << "Your number is even";
+} else {
+    std::cout << "Your number is odd";
+}
+
+return 0;
+
 
 }
