@@ -29,7 +29,7 @@ std::cout << "----------------------------------" << std::endl;
 
 
 return 0;
-*/
+
 
 //Task: Ask for an integer. Check if it is Even or Odd and print the result.
 
@@ -45,6 +45,60 @@ if (x % 2 == 0) {
 }
 
 return 0;
+
+
+The Goal: Create a program that acts like a bouncer at a club, but also checks for senior discounts.
+Requirements:
+Ask the user for their age.
+IF the age is less than 18:
+Print: "You are too young to enter."
+ELSE IF the age is greater than 65:
+Print: "Welcome! You qualify for a senior discount."
+ELSE (for everyone else, aged 18 to 65):
+Print: "Welcome to the club."
+
+
+
+int age {};
+
+std::cout << "What is your age" << std::endl;
+std::cin  >> age ;
+
+if (age < 18) {
+    std::cout << "You are too young to enter" << std::endl;
+}
+else if (age > 65){
+    std::cout << "Welcome! You qualify for a senior discount" << std::endl;
+}
+else {
+    std::cout << "Welcome to the club" << std::endl;
+}
+
+
+
+
+
+
+
+*/
+
+
+
+return 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
