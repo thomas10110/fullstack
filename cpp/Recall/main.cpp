@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-
-int main() {
 /*
+int main() {
+
 std::string item {};
 double item_price {};
 double quantity {};
@@ -153,7 +153,7 @@ std::cout << score[2] << std::endl;
 std::cout << score[3] << std::endl;
 std::cout << score[4] << std::endl;
 
-*/
+
 
 // Assume slot 0 has the biggest number
 // Loop through slots 1, 2, 3, 4
@@ -182,7 +182,25 @@ std::cout << "Biggets array is:" << biggest << std::endl;
 
 
 
+int array [5];
 
+std::cout << "Fill the array:" << std::endl;
+
+for ( int i=0; i < 5; i ++){
+    std::cin >> array [i];
+}
+for ( int i = 4; i >= 0; i --){
+    std::cout << array [i];
+}
+*/
+
+void print_banner (){
+    std::cout << "---Welcome---" << std::endl;
+}
+
+int main (){
+
+print_banner();
 
 return 0;
 }
