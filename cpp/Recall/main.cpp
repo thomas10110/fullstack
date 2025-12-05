@@ -263,11 +263,11 @@ std::cout << "----------------" << std::endl;
 return 0;
 
 }
-*/
 
 
 
-double balance = 500.00;
+
+
 
 void show_menu(){
     std::cout << "********** MENU **********" << std::endl;
@@ -293,14 +293,14 @@ int main() {
             std::cout << "Your balance is:" << balance << std::endl;
         }
         else if(option == 2){
-            int add {};
+            double add {};
             std::cout << "Choose amout of balance you want to add:" << std::endl;
             std::cin >> add;
             balance = balance + add;
              std::cout << "Your new balance is:" << balance << std::endl;
         }
         else if (option == 3){
-            int take {};
+            double take {};
             std::cout << "Yourcurrent balance is:" << balance << std::endl;
             std::cout << "Choose amout of balance you want to withdrawl:" << std::endl;
             std::cin >> take;
@@ -320,4 +320,28 @@ int main() {
     }
     
     return 0;
+}
+*/
+
+
+
+class Rectangle {
+public: // This makes the data accessible
+    double width {};
+    double height {};
+
+    double get_area(){
+        double area = width * height;
+        return area;
+    }
+};
+int main (){
+
+    Rectangle rect;
+    rect.width = 5;
+    rect.height = 10;
+
+    std::cout << "Area: " << rect.get_area() << std::endl;
+    
+return 0;
 }
