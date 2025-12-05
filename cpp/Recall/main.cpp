@@ -193,25 +193,25 @@ for ( int i = 4; i >= 0; i --){
     std::cout << array [i];
 }
 */
-
-int c {};
-int x {};
-int y {};
-
-void multiply (){
-    c = x*y;
-    std::cout << "Mutliply number is:" << c << std::endl;
+int add(int a, int b) {
+    int sum = a + b;
+    return sum;
 }
 
-int main (){
+int main() {
+    
+    int x {};
+    int y {};
+    std::cout << "Enter first number" << std::endl;
+    std:: cin >> x;
+    std::cout << "Enter second number" << std::endl;
+    std:: cin >> y;
 
-std::cout << "Enter number x:"  << std::endl;
-std::cin >> x ;
-std::cout << "Enter number y:"  << std::endl;
-std::cin >> y ;
 
-multiply();
-
-
-return 0;
+    
+    // CAPTURE the data coming out of the function
+    int total = add(x, y); 
+    
+    std::cout << "The total is: " << total << std::endl;
+    return 0;
 }
