@@ -192,7 +192,7 @@ for ( int i=0; i < 5; i ++){
 for ( int i = 4; i >= 0; i --){
     std::cout << array [i];
 }
-*/
+
 int add(int a, int b) {
     int sum = a + b;
     return sum;
@@ -215,3 +215,26 @@ int main() {
     std::cout << "The total is: " << total << std::endl;
     return 0;
 }
+
+
+
+int main (){
+
+
+    int number = 10;
+    int* ptr = &number;
+
+    std::cout << number << std::endl ;
+
+    *ptr = 20;
+
+    std::cout << number ;
+
+    return 0;
+}
+*/
+struct Student {
+    std::string name;
+    int age;
+    double gpa;
+}; // <--- Don't forget this semicolon!
