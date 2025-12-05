@@ -232,7 +232,7 @@ int main (){
 
     return 0;
 }
-*/
+
 struct Student {
     std::string name;       //std::getline(std::cin, student1.name); for space broke prevention
     int age;
@@ -262,4 +262,58 @@ std::cout << "----------------" << std::endl;
 
 return 0;
 
+}
+*/
+
+
+
+double balance = 500.00;
+
+void show_menu(){
+    std::cout << "********** MENU **********" << std::endl;
+    std::cout << "1. Check Balance" << std::endl;
+    std::cout << "2. Deposit" << std::endl;
+    std::cout << "3. Withdraw" << std::endl;
+    std::cout << "4. Exit" << std::endl;
+    std::cout << "**************************" << std::endl;
+}
+
+int main() {
+    double balance = 500.00;
+    int option;
+    
+    
+
+    while (true){
+        show_menu();
+        std::cout << "Please select your choice:" << std::endl;
+        std::cin >> option;
+
+        if (option = 1) {
+            std::cout << "Your balance is:" << balance << std::endl;
+        }
+        else if(option = 2){
+            int add {};
+            std::cout << "Choose amout of balance you want to add:" << std::endl;
+            std::cin >> add;
+            balance = balance + add;
+             std::cout << "Your new balance is:" << balance << std::endl;
+        }
+        else if (option = 3){
+            int take {};
+            std::cout << "Yourcurrent balance is:" << balance << std::endl;
+            std::cout << "Choose amout of balance you want to withdrawl:" << std::endl;
+            std::cin >> take;
+            balance = balance - take;
+            std::cout << "Your new balance is:" << balance << std::endl;
+        }
+        else if (option = 4){
+            break;
+        }
+
+
+
+    }
+    
+    return 0;
 }
