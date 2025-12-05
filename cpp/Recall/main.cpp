@@ -135,10 +135,51 @@ average = sum / 5.0;
 
 */
 
-std::string car[] = {"Audi","Bmw","Porshe"}; //can have only same data type no numbers in strign etc..
+/*
+// pending review (task :  Create array of 5 ints. Input & print.)
 
-std::cout << car;   //adress
-std::cout << car [1]; //element in array
+int score [5];
+std::cout << "The Score Keeper" << std::endl;
+std::cout << "-----------------------" << std::endl;
+for (int i = 0; i < 5; i++){
+    std::cout << "Enter score:" << std::endl;
+    std::cin >> score [i];
+}
+std::cout << "-----------------------" << std::endl;
+std::cout << "Scores submited:" << std::endl;
+std::cout << score[0] << std::endl;
+std::cout << score[1] << std::endl;
+std::cout << score[2] << std::endl;
+std::cout << score[3] << std::endl;
+std::cout << score[4] << std::endl;
+
+*/
+
+// Assume slot 0 has the biggest number
+// Loop through slots 1, 2, 3, 4
+// If you find a bigger number, update which slot is biggest
+
+int array [5];
+int biggest = 0;
+
+std::cout << "Max Array Number Finder" << std::endl;
+std::cout << "-----------------------" << std::endl;
+for (int i = 0; i < 5; i++){
+    std::cout << "Enter number:" << std::endl;
+    std::cin >> array [i];
+}
+for (int i = 0; i < 5; i++){
+    if (array[i]>array[biggest]){
+        biggest = i;
+         }
+    // Found a bigger number!
+        // Update biggest to point to this new slot
+    }
+
+std::cout << "Biggets array is:" << biggest << std::endl;
+
+
+
 
 
 
