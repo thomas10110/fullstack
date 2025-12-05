@@ -234,7 +234,32 @@ int main (){
 }
 */
 struct Student {
-    std::string name;
+    std::string name;       //std::getline(std::cin, student1.name); for space broke prevention
     int age;
     double gpa;
-}; // <--- Don't forget this semicolon!
+};
+
+int main() {
+
+
+
+Student student1;
+std::cout << "Type students name:" << std::endl;
+std::cin >> student1.name;
+std::cout << "Type students age:" << std::endl;
+std::cin >> student1.age;
+std::cout << "Type students gpa:" << std::endl;
+std::cin >> student1.gpa;
+
+std::cout << "-----ID-CARD----" << std::endl;
+std::cout << "Name: " << student1.name << std::endl;
+std::cout << "Age: " << student1.age << std::endl;
+std::cout << "Gpa: " << student1.gpa << std::endl;
+std::cout << "----------------" << std::endl;
+
+
+
+
+return 0;
+
+}
