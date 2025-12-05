@@ -289,25 +289,29 @@ int main() {
         std::cout << "Please select your choice:" << std::endl;
         std::cin >> option;
 
-        if (option = 1) {
+        if (option == 1) {
             std::cout << "Your balance is:" << balance << std::endl;
         }
-        else if(option = 2){
+        else if(option == 2){
             int add {};
             std::cout << "Choose amout of balance you want to add:" << std::endl;
             std::cin >> add;
             balance = balance + add;
              std::cout << "Your new balance is:" << balance << std::endl;
         }
-        else if (option = 3){
+        else if (option == 3){
             int take {};
             std::cout << "Yourcurrent balance is:" << balance << std::endl;
             std::cout << "Choose amout of balance you want to withdrawl:" << std::endl;
             std::cin >> take;
+            if (take > balance){
+                 std::cout << "Insufficient Funds" << std::endl;
+            }
+            else {
             balance = balance - take;
             std::cout << "Your new balance is:" << balance << std::endl;
-        }
-        else if (option = 4){
+        }}
+        else if (option == 4){
             break;
         }
 
