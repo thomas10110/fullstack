@@ -194,13 +194,24 @@ for ( int i = 4; i >= 0; i --){
 }
 */
 
-void print_banner (){
-    std::cout << "---Welcome---" << std::endl;
+int c {};
+int x {};
+int y {};
+
+void multiply (){
+    c = x*y;
+    std::cout << "Mutliply number is:" << c << std::endl;
 }
 
 int main (){
 
-print_banner();
+std::cout << "Enter number x:"  << std::endl;
+std::cin >> x ;
+std::cout << "Enter number y:"  << std::endl;
+std::cin >> y ;
+
+multiply();
+
 
 return 0;
 }
