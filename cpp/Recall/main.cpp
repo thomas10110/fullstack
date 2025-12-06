@@ -332,7 +332,7 @@ public: // This makes the data accessible
 
     double get_area(){
         double area = width * height;
-        return area; // returtns the area calculated if called
+        return area; // returns the area calculated if called
     }
 };
 int main (){
