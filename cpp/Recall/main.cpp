@@ -321,7 +321,7 @@ int main() {
     
     return 0;
 }
-*/
+
 
 
 
@@ -344,4 +344,40 @@ int main (){
     std::cout << "Area: " << rect.get_area() << std::endl;
     
 return 0;
+}
+*/
+
+
+class Account {
+    private:
+    double balance{};
+
+    public:
+    void deposit(double amount){
+        if (amount > 0){
+            balance = balance + amount;
+        }
+        else {
+            std::cout << "Invalid amount"<< std::endl;
+        }
+        
+    }
+        double get_balance(){
+        return balance;
+    }
+};
+main(){
+
+    Account my_acc;
+    double temp_amount;
+
+    
+
+    std::cout << "Choose amount to deposit:"<< std::endl;
+    std::cin >> temp_amount;
+   
+    my_acc.deposit(temp_amount);
+    std::cout << "Current Balance: " << my_acc.get_balance() << std::endl;
+
+    return 0;
 }
