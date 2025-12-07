@@ -345,7 +345,7 @@ int main (){
     
 return 0;
 }
-*/
+
 
 
 class Account {
@@ -378,6 +378,75 @@ main(){
    
     my_acc.deposit(temp_amount);
     std::cout << "Current Balance: " << my_acc.get_balance() << std::endl;
+
+    return 0;
+}
+*/
+
+class Pet{
+    private:
+    std::string name;
+    int hunger {};
+    int energy = 100;
+
+    public:
+    void feed(){
+        hunger = hunger - 10;
+    }
+    void play(){
+        hunger = hunger + 10;
+        energy = energy - 20;
+    }
+    void sleep(){
+        energy = 100;
+    }
+    void check_status(){
+        std::cout << "---PetStats---" << std::endl;
+        std::cout << "Pet name:" << name << std::endl;
+        std::cout << "Hunger:" << hunger << std::endl;
+        std::cout << "Energy:" << energy << std::endl;
+    }
+    bool is_dead(){
+         if (hunger == 100 || energy == 0){
+            std::cout << "Your pet ran away!";
+            return true;
+        }
+        return false;
+        }
+    };
+
+
+main(){
+
+    Pet my_pet;
+    int user_input{};
+
+    while(true){
+        std::cout << "---PetMenu---" << std::endl;
+        std::cout << "1.Feed" <<  std::endl;
+        std::cout << "2.Play" <<  std::endl;
+        std::cout << "3.Sleep" <<  std::endl;
+        std::cout << "4.Check Status" <<  std::endl;
+
+        std::cin >> user_input;
+
+        if (user_input == 1){
+            my_pet.feed();
+        }
+        if (user_input == 2){
+            my_pet.play();
+        }
+        if (user_input == 3){
+            my_pet.sleep();
+        }
+        if (user_input == 4){
+            my_pet.check_status();
+        }
+        if (my_pet.is_dead()) {
+            break;
+        }
+
+    }
 
     return 0;
 }
