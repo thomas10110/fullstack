@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 /*
 int main() {
 
@@ -381,7 +382,6 @@ main(){
 
     return 0;
 }
-*/
 
 class Pet{
     private:
@@ -450,3 +450,80 @@ main(){
 
     return 0;
 }
+
+
+Syntax Cheat Sheet: You need #include <vector> at the top.
+std::vector<std::string> songs; // 1. Create empty list
+// 2. Add items (The list grows automatically!)
+songs.push_back("Shape of You"); 
+songs.push_back("Believer");
+// 3. Check size
+std::cout << "I have " << songs.size() << " songs.";
+// 4. Access items (Just like an array)
+std::cout << songs[0]; // Prints "Shape of You"
+🎧 Task: The Playlist Manager
+The Goal: Create a program where the user can add as many songs as they want, and then print the whole list.
+Requirements:
+Include: #include <vector>
+Setup: Inside main, create an empty vector of strings: std::vector<std::string> playlist;
+Menu Loop:
+Option 1 (Add): Ask user for a song name. Use playlist.push_back(name); to add it. Print "Added!".
+Option 2 (Show): Use a for loop to print every song.
+Hint: Your loop condition should be i < playlist.size().
+Option 3 (Exit): Break the loop.
+Give it a try! This is your first step into "Dynamic Memory."
+
+int main(){
+
+std::vector<std::string> songs;
+songs.push_back("Shape of You");
+songs.push_back("Believer");
+
+std::cout << "I have " << songs.size() << " songs.";
+std::cout << songs[0];
+
+return 0;
+}
+*/
+
+int main(){
+
+    int option {};
+
+    std::vector<std::string> playlist;
+
+    while (true){
+
+        std::cout << "--PlaylistManager--" << std::endl;
+        std::cout << "1.Add song" << std::endl;
+        std::cout << "2.Show songs list" << std::endl;
+        std::cout << "3.Exit" << std::endl;
+
+        std::cin >> option;
+        
+        if (option == 1){
+            std::cout << "Enter song name:" << std::endl;
+            std::string name{};
+            std::cin >> name;
+            playlist.push_back(name);
+        }
+        else if (option == 2){          // use elif instead of if to skip unwanted options (save computation)
+            std::cout << "List of your songs:" << std::endl;
+            for ( int i = 0;i < playlist.size();i++){
+                std::cout << playlist[i] << std::endl;
+        }
+        }
+        else if (option == 3){
+            std::cout << "See ya!" << std::endl;
+            break;
+        }
+        else  {
+            std::cout << "Invalid option"<< std::endl;
+        }
+
+    }
+return 0;
+}
+*/
+
+
