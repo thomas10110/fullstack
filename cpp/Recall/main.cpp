@@ -530,14 +530,21 @@ class Gladiator{
     private:
     std::string name;
     int health {};
-    int demage {};
+    int damage {};
 
     public:
-    void attack(Gladiator &target){
-        std::cout << "X attacks Y" << std::endl;
-        target.health = target.health - demage;
+
+    Gladiator(std::string n, int h, int d) {
+        name = n;
+        health = h;
+        damage = d;
     }
-    void is_alive(){
+
+    void attack(Gladiator &target){
+        std::cout << name << " attacks " << target.name << std::endl;
+        target.health = target.health - damage;
+    }
+    bool is_alive(){
         if (health > 0){
             return true;
         }
@@ -545,18 +552,39 @@ class Gladiator{
             return false;
         }
     }
-    void get_name(){
-        std::cout << "Winner is:" << name<< std::endl;
+    void announce_winner(){
+        std::cout << "The winner is: " << name << std::endl;
     }
 };
 
 
 int main(){
+
     Gladiator g1("Spartacus", 100, 20);
     Gladiator g2("Crixus", 120, 15);
 
-    while (g1.is_alive() && g2.is_alive() ){
-        g1 Gladiator.attack
+    while (g1.is_alive() && g2.is_alive()) {
+        
+        // 3. FIXED SYNTAX
+        // Round 1: g1 hits g2
+        g1.attack(g2);
+
+        // Check if g2 died immediately!
+        if (!g2.is_alive()) {
+            break; // Stop the fight before g2 can hit back
         }
+
+        // Round 2: g2 hits g1
+        g2.attack(g1);
+    }
+
+    // Determine who won
+    if (g1.is_alive()) {
+        g1.announce_winner();
+    } else {
+        g2.announce_winner();
+    }
+
+    return 0;
 }
 
