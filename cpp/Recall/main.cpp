@@ -484,7 +484,6 @@ std::cout << songs[0];
 
 return 0;
 }
-*/
 
 int main(){
 
@@ -526,4 +525,38 @@ return 0;
 }
 */
 
+
+class Gladiator{
+    private:
+    std::string name;
+    int health {};
+    int demage {};
+
+    public:
+    void attack(Gladiator &target){
+        std::cout << "X attacks Y" << std::endl;
+        target.health = target.health - demage;
+    }
+    void is_alive(){
+        if (health > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    void get_name(){
+        std::cout << "Winner is:" << name<< std::endl;
+    }
+};
+
+
+int main(){
+    Gladiator g1("Spartacus", 100, 20);
+    Gladiator g2("Crixus", 120, 15);
+
+    while (g1.is_alive() && g2.is_alive() ){
+        g1 Gladiator.attack
+        }
+}
 
