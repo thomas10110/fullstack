@@ -523,7 +523,6 @@ int main(){
     }
 return 0;
 }
-*/
 
 
 class Gladiator{
@@ -555,6 +554,15 @@ class Gladiator{
     void announce_winner(){
         std::cout << "The winner is: " << name << std::endl;
     }
+    std::string get_name(){
+        return name;
+    }
+    int get_health(){
+        return health;
+    }
+    int get_damage(){
+        return damage;
+    }
 };
 
 
@@ -563,28 +571,73 @@ int main(){
     Gladiator g1("Spartacus", 100, 20);
     Gladiator g2("Crixus", 120, 15);
 
-    while (g1.is_alive() && g2.is_alive()) {
-        
-        // 3. FIXED SYNTAX
-        // Round 1: g1 hits g2
-        g1.attack(g2);
+    std::vector<Gladiator> army;
+    std::string temp_name;
+    int temp_hp;
+    int temp_dmg;
 
-        // Check if g2 died immediately!
-        if (!g2.is_alive()) {
-            break; // Stop the fight before g2 can hit back
+    while(true){
+        std::cout << "--Gladiators--" << std::endl;
+        std::cout << "Choose option:" << std::endl;
+        std::cout << "1.Recruit" << std::endl;
+        std::cout << "2.Roll Call" << std::endl;
+        std::cout << "3.Identify Champion" << std::endl;
+        std::cout << "4.Exit" << std::endl;
+        std::cout << "--------------" << std::endl;
+
+        int option {};
+        std::cin >> option;
+
+        if(option == 1){
+              std::cout << "Choose gladiators name:" << std::endl;
+              std::cin >> temp_name;
+              std::cout << "Choose gladiators health:" << std::endl;
+              std::cin >> temp_hp;
+              std::cout << "Choose gladiators demage:" << std::endl;
+              std::cin >> temp_dmg;
+
+            army.push_back( Gladiator(temp_name, temp_hp, temp_dmg) );
         }
+        else if (option ==2){
+            std::cout << "--- Roster ---" << std::endl;
+            for (int i = 0; i < army.size(); i++) {
+                std::cout << "Fighter: " << army[i].get_name() <<std::endl;
+                std::cout << "Health: " << army[i].get_health() <<std::endl;
+                std::cout << "Damage: " << army[i].get_damage() <<std::endl;
+            }}
+        else if (option == 3) {
+            if (army.size() == 0) {
+                std::cout << "No fighters recruited yet!" << std::endl;
+            } else {
+                // "King of the Hill" Logic
+                int max_dmg = -1;
+                std::string strongest_name = "";
 
-        // Round 2: g2 hits g1
-        g2.attack(g1);
+                for (int i = 0; i < army.size(); i++) {
+                    // Check if current fighter is stronger than the current record
+                    if (army[i].get_damage() > max_dmg) {
+                        max_dmg = army[i].get_damage();
+                        strongest_name = army[i].get_name();
+                    }
+                }
+                std::cout << "\nThe Champion is: " << strongest_name << std::endl;
+                std::cout << "With damage: " << max_dmg << std::endl;
+            }
+        }
+        else if (option == 4) {
+            std::cout << "Guild closed. Goodbye!" << std::endl;
+            break;
+        }
+        else {
+            std::cout << "Invalid option, try again." << std::endl;
+        }
     }
 
-    // Determine who won
-    if (g1.is_alive()) {
-        g1.announce_winner();
-    } else {
-        g2.announce_winner();
-    }
+
 
     return 0;
 }
+*/
+
+
 
