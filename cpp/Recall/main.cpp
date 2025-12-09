@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "trade.h"
 /*
 int main() {
 
@@ -640,60 +641,40 @@ int main(){
 }
 
 */
-class Trade{
-
-    private:
-    std::string symbol;
-    double price{};
-    int quantity{};
-
-    public:
-    Trade(std::string s, double p, int q) {
-        symbol = s;
-        price = p;
-        quantity = q;
-    }
-    std::string getDataForFile() {
-        return symbol + "," + std::to_string(price) + "," + std::to_string(quantity);
-    }
-    
-
-};
 
 void saveLedger(std::vector<Trade>& ledger){
     std::ofstream myFile("trade_history.csv"); 
     if (myFile.is_open()) {
         for(int i = 0; i < ledger.size(); i++) {
-        myFile << ledger[i].getDataForFile() << std::endl;
+            // Note: Compiler knows getDataForFile exists because of "Trade.h"
+            myFile << ledger[i].getDataForFile() << std::endl;
         }
         myFile.close(); 
     } else {
         std::cout << "Error: Could not open file." << std::endl;
     }
-    }   
+}
 
 int main () {
-
     std::vector<Trade> dailyLedger;
     std::string temp_symbol;
     int temp_price{};
     int temp_quantity{};
 
-
     for ( int i = 0; i < 2; i++){
-        std::cout << "Enter symbol" <<std::endl;
+        std::cout << "Enter symbol" << std::endl;
         std::cin >> temp_symbol;
-        std::cout << "price" <<std::endl;
+        std::cout << "price" << std::endl;
         std::cin >> temp_price;
-        std::cout << "Enter qantity" <<std::endl;
+        std::cout << "Enter quantity" << std::endl;
         std::cin >> temp_quantity ;
 
         Trade newTrade(temp_symbol, temp_price, temp_quantity);
         dailyLedger.push_back(newTrade);
-        
     }
+    
     saveLedger(dailyLedger);
-return 0;
+    return 0;
 }
 
 

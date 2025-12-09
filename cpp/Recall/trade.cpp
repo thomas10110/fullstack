@@ -1,4 +1,4 @@
-#include "Trade.h" // We must include the menu so we know what we are cooking!
+#include "trade.h" // We must include the menu so we know what we are cooking!
 #include <string>
 
 // The Constructor Logic
