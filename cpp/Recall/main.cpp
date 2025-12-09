@@ -638,9 +638,8 @@ int main(){
 
     return 0;
 }
+
 */
-
-
 class Trade{
 
     private:
@@ -691,8 +690,9 @@ int main () {
 
         Trade newTrade(temp_symbol, temp_price, temp_quantity);
         dailyLedger.push_back(newTrade);
-        saveLedger(dailyLedger);
+        
     }
+    saveLedger(dailyLedger);
 return 0;
 }
 
