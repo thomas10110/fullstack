@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include "trade.h"
+//#include "trade.h"
 /*
 int main() {
 
@@ -640,7 +640,7 @@ int main(){
     return 0;
 }
 
-*/
+
 
 void saveLedger(std::vector<Trade>& ledger){
     std::ofstream myFile("trade_history.csv"); 
@@ -677,4 +677,21 @@ int main () {
     return 0;
 }
 
+*/
 
+int main(){
+
+int wallet = 500;
+
+int* ptr =  &wallet;
+
+std::cout << "Wallet ammount:" << wallet << std::endl;
+std::cout << "Wallet adress:" << &wallet << std::endl;
+
+*ptr = 1000;
+
+std::cout << "Wallet ammount:" << wallet << std::endl;
+std::cout << "Wallet adress:" << &wallet;
+
+return 0;
+}
