@@ -677,7 +677,7 @@ int main () {
     return 0;
 }
 
-*/
+
 
 int main(){
 
@@ -695,3 +695,28 @@ std::cout << "Wallet adress:" << &wallet;
 
 return 0;
 }
+
+
+int main(){
+
+int size = {};
+
+std::cout << "Enter array size" << std::endl;
+std::cin >> size;
+
+double* marketData = new double[size];
+
+for (int i = 0; i < size; i++ ){
+    marketData[i] = i * 2.5;
+
+}
+std::cout << "Value at last index:" << marketData[size - 1] << std::endl;
+
+// 3. Give it back (CRITICAL)
+delete[] marketData; 
+marketData = nullptr;
+
+return 0;
+}
+
+*/
