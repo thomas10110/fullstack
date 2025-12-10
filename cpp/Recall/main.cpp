@@ -719,7 +719,7 @@ marketData = nullptr;
 return 0;
 }
 
-*/
+
 
 class Instrument{
 
@@ -757,3 +757,20 @@ main() {
 
     return 0;
 }
+
+
+
+
+double stockPrice = 100.0;
+double *ptr = &stockPrice;
+
+void crashmarket(double* pricePtr){
+    *pricePtr = *pricePtr * 0.5;
+}
+
+int main(){
+    crashmarket(&stockPrice);
+    std::cout << "Stock price:" << stockPrice << std::endl;
+}
+
+*/
