@@ -794,14 +794,15 @@ CryptoWallet myLedger;
     std::cout << myLedger.balance <<std::endl;
 return 0;
 }
+
+
 */
-
-
 
 class PriceAnalyzer {
 private:
     double history_buffer[5];
-    int prices_added {0}; // Always initialize your state!
+    int prices_added {};
+    int current_index {};
 
 public:
     // LOGIC ONLY: No cout/cin here. just math.
@@ -811,7 +812,11 @@ public:
             history_buffer[prices_added] = price;
             prices_added++; 
         } else {
-            std::cout << "[System] Buffer full. Ignored price: " << price << std::endl;
+            history_buffer[current_index] = price;
+            current_index ++;
+            if (current_index == 5) {
+                current_index = 0;
+            }
         }
     }
 
@@ -823,7 +828,7 @@ public:
 
         double sum = 0.0;
         // Standard idiomatic C++ loop: from 0 to < count
-        for (int i = 0; i < prices_added; ++i) {
+        for (int i = 0; i < prices_added && i < 5; ++i) {
             sum += history_buffer[i];
         }
         
@@ -856,3 +861,4 @@ int main() {
     }
     return 0;
 }
+    
