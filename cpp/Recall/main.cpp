@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include "Order.h"
 //#include "trade.h"
 /*
 int main() {
@@ -773,7 +774,7 @@ int main(){
     std::cout << "Stock price:" << stockPrice << std::endl;
 }
 
-*/
+
 
 class BankAccount{
     public:
@@ -793,5 +794,4 @@ CryptoWallet myLedger;
     std::cout << myLedger.balance <<std::endl;
 return 0;
 }
-
 */
