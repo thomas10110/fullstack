@@ -720,3 +720,40 @@ return 0;
 }
 
 */
+
+class Instrument{
+
+    public:
+    double value {};
+
+    void setValue(double v){
+        value = v;
+        
+    }
+};
+
+class Stock : public Instrument {
+public:
+    std::string symbol;
+
+    void printInfo() {
+        std::cout << "Stock: " << symbol << ", Price: " << value << std::endl;
+    }
+};
+
+main() {
+
+   Stock apple; 
+
+
+    apple.symbol = "AAPL";
+
+    apple.setValue(150.0);
+
+
+    apple.printInfo();
+
+
+
+    return 0;
+}
