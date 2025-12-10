@@ -774,3 +774,24 @@ int main(){
 }
 
 */
+
+class BankAccount{
+    public:
+    double balance {};
+    void deposit(double amount){
+        balance = balance + amount;
+    }
+};
+
+class CryptoWallet : public BankAccount{
+};
+
+int main (){
+CryptoWallet myLedger;
+    myLedger.balance = 500,
+    myLedger.deposit(100),
+    std::cout << myLedger.balance <<std::endl;
+return 0;
+}
+
+*/
