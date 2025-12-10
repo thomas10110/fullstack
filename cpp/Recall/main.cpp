@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include "Order.h"
+
 //#include "trade.h"
 /*
 int main() {
@@ -795,3 +795,64 @@ CryptoWallet myLedger;
 return 0;
 }
 */
+
+
+
+class PriceAnalyzer {
+private:
+    double history_buffer[5];
+    int prices_added {0}; // Always initialize your state!
+
+public:
+    // LOGIC ONLY: No cout/cin here. just math.
+    void addPrice(double price) {
+        // Check strict inequality. If we have 5, index 0-4 are full.
+        if (prices_added < 5) {
+            history_buffer[prices_added] = price;
+            prices_added++; 
+        } else {
+            std::cout << "[System] Buffer full. Ignored price: " << price << std::endl;
+        }
+    }
+
+    double calculateAverage() const {
+        // Guard clause: Prevent division by zero
+        if (prices_added == 0) {
+            return 0.0;
+        }
+
+        double sum = 0.0;
+        // Standard idiomatic C++ loop: from 0 to < count
+        for (int i = 0; i < prices_added; ++i) {
+            sum += history_buffer[i];
+        }
+        
+        return sum / prices_added;
+    }
+};
+
+int main() {
+    PriceAnalyzer local;
+    int option = 0;
+    
+    while (true) {
+        std::cout << "\n1. Add price\n2. Print average\n3. Exit\nSelect: ";
+        std::cin >> option;
+
+        if (option == 1) {
+            double input_price = 0.0;
+            std::cout << "Enter price: ";
+            std::cin >> input_price;
+            
+            // Pass the data TO the class
+            local.addPrice(input_price);
+        }
+        else if (option == 2) {
+            std::cout << "Current Average: " << local.calculateAverage() << std::endl;
+        }
+        else if (option == 3) {
+            break;
+        }
+    }
+    return 0;
+}
