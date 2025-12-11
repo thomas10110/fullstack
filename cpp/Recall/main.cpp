@@ -796,7 +796,7 @@ return 0;
 }
 
 
-*/
+
 
 class PriceAnalyzer {
 private:
@@ -862,3 +862,53 @@ int main() {
     return 0;
 }
     
+*/
+
+
+class Position{
+
+    private:
+
+    std::string ticker {};
+    int quantity {};
+    double price{};
+
+    public:
+
+    Position(std::string t = "", int q = 0, double p = 0.0)
+        : ticker(t), quantity(q), price(p) {}
+    
+    double calculateValue() const {
+        return quantity * price;
+    }
+
+
+};
+
+int main(){
+
+    Position portfolio[5] = {
+        Position("AAPL", 10, 150.0),
+        Position("MSFT", 5, 200.0),
+        Position("GOOG", 20, 50.0),
+        Position("AMZN", 7, 300.0),
+        Position("TSLA", 12, 120.0)
+    };
+
+    double portfoli_osum {};
+    int biggest_position {};
+
+    for (int i = 0; i < 4 ; i++){
+        portfolio[i].quantity
+        
+
+
+    }
+   return 0; 
+}
+
+//The Loop: Iterate through the array.
+
+//The Math: Calculate the sum of the entire portfolio value.
+
+//The Logic: Find and print the ID of the position with the highest total value.
