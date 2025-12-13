@@ -865,8 +865,6 @@ int main() {
     return 0;
 }
     
-*/
-
 
 void updateSensor(double* p_sensore) {
     static std::mt19937 gen(std::random_device{}());
@@ -885,4 +883,34 @@ int main(){
             std::cout << "Sensore reads:" << sensorReading <<std::endl;
         }
     return 0;    
+}
+*/
+
+struct Order{
+    int orderID{};
+    double price{};
+    int quantity{};
+    bool isFilled{};
+};
+void fillOrder(Order* o) {
+    if (o->price > 0) {
+        o->isFilled = true;
+        std::cout << "Order filled" << std::endl;
+    } else {
+        std::cout << "Invalid price" << std::endl;
+    }
+}
+
+main(){
+
+    Order MyOrder;
+    MyOrder.orderID = 101;
+    MyOrder.price = 450.0;
+    MyOrder.quantity = 10;
+    MyOrder.isFilled = false;
+
+//Initialize it: ID = 101, Price = 450.0, Quantity = 10, isFilled = false.
+
+    fillOrder(&MyOrder);
+    return 0;
 }
