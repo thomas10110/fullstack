@@ -884,7 +884,7 @@ int main(){
         }
     return 0;    
 }
-*/
+
 
 struct Order{
     int orderID{};
@@ -901,7 +901,7 @@ void fillOrder(Order* o) {
     }
 }
 
-main(){
+int main(){
 
     Order MyOrder;
     MyOrder.orderID = 101;
@@ -914,3 +914,50 @@ main(){
     fillOrder(&MyOrder);
     return 0;
 }
+
+
+
+struct Order{
+    int orderID{};
+    double price{};
+    int quantity{};
+    bool isFilled{};
+};
+
+void fillOrder(Order* o) {
+    if (o->price > 0) {
+        o->isFilled = true;
+    } 
+}
+
+int main(){
+
+
+Order book[3];
+book[0].orderID = 1;
+book[0].price = 100;
+book[0].quantity = 5;
+book[0].isFilled = false;
+book[1].orderID = 2;
+book[1].price = -51;
+book[1].quantity = 10;
+book[1].isFilled = false;
+book[2].orderID = 3;
+book[2].price = 500;
+book[2].quantity = 2;
+book[2].isFilled = false;
+
+double totalValue = 0;
+
+for (int i = 0 ; i<3; i++){
+    fillOrder(&book[i]);
+    if (book[i].isFilled == 1){
+        totalValue = totalValue + (book[i].price * book[i].quantity);
+    }
+}
+
+std::cout << "Total value of filled orders is: " << totalValue << std::endl;
+
+return 0;
+}
+*/
