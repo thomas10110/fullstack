@@ -914,7 +914,7 @@ int main(){
     fillOrder(&MyOrder);
     return 0;
 }
-
+*/
 
 
 struct Order{
@@ -922,6 +922,12 @@ struct Order{
     double price{};
     int quantity{};
     bool isFilled{};
+
+Order(int ord, double prc, int quant, bool filled) {
+        orderID = ord;
+        price = prc;
+        quantity = quant;
+        isFilled = filled;}
 };
 
 void fillOrder(Order* o) {
@@ -931,27 +937,21 @@ void fillOrder(Order* o) {
 }
 
 int main(){
+    
 
+ 
+Order book[3] = {
+    Order(1, 100, 5, false),
+    Order(2, -51, 10, false),
+    Order(3, 500, 2, false)
+};
 
-Order book[3];
-book[0].orderID = 1;
-book[0].price = 100;
-book[0].quantity = 5;
-book[0].isFilled = false;
-book[1].orderID = 2;
-book[1].price = -51;
-book[1].quantity = 10;
-book[1].isFilled = false;
-book[2].orderID = 3;
-book[2].price = 500;
-book[2].quantity = 2;
-book[2].isFilled = false;
 
 double totalValue = 0;
 
 for (int i = 0 ; i<3; i++){
     fillOrder(&book[i]);
-    if (book[i].isFilled == 1){
+    if (book[i].isFilled == true){
         totalValue = totalValue + (book[i].price * book[i].quantity);
     }
 }
@@ -960,4 +960,7 @@ std::cout << "Total value of filled orders is: " << totalValue << std::endl;
 
 return 0;
 }
-*/
+
+
+
+
