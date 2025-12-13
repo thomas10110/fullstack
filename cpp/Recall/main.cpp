@@ -4,6 +4,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <random>
 
 //#include "trade.h"
 /*
@@ -866,40 +867,22 @@ int main() {
     
 */
 
-    bool playRound() {
-         return rand() % 2; 
-        }
+
+void updateSensor(double* p_sensore) {
+    static std::mt19937 gen(std::random_device{}());
+    std::uniform_real_distribution<double> dist(20.0, 40.0);
+
+    *p_sensore = dist(gen); 
+}
+
 
 int main(){
-
-    srand(time(nullptr));
-    bool result = playRound();
-
-    double balance = 1000;
-    double bet{};
-
-
-    for (int i = 0; i < 9; i++){
-        if (balance == 0){
-             std::cout << "Liquidation." <<std::endl;
-             break;}
-        std::cout << "Enter bet:" <<std::endl;
-        std::cin >> bet;
-        if (bet > balance || bet < 0){
-            std::cout << "Invalid amount:" <<std::endl;
-            i--;
+    
+ double sensorReading = 0.0;
+ double* p_sensore = &sensorReading;
+        for ( int i = 0; i <5 ; i++){
+            updateSensor(p_sensore);
+            std::cout << "Sensore reads:" << sensorReading <<std::endl;
         }
-        else if (result == 1){
-            balance = balance + bet;
-        }
-        else {
-            balance = balance - bet;
-        }
-
-        }
-
-        std::cout << "Your final balance is:" << balance;
-
-
-return 0;
+    return 0;    
 }
