@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <fstream>
+#include <cstdlib>
+#include <ctime>
 
 //#include "trade.h"
 /*
@@ -864,5 +866,40 @@ int main() {
     
 */
 
+    bool playRound() {
+         return rand() % 2; 
+        }
+
+int main(){
+
+    srand(time(nullptr));
+    bool result = playRound();
+
+    double balance = 1000;
+    double bet{};
 
 
+    for (int i = 0; i < 9; i++){
+        if (balance == 0){
+             std::cout << "Liquidation." <<std::endl;
+             break;}
+        std::cout << "Enter bet:" <<std::endl;
+        std::cin >> bet;
+        if (bet > balance || bet < 0){
+            std::cout << "Invalid amount:" <<std::endl;
+            i--;
+        }
+        else if (result == 1){
+            balance = balance + bet;
+        }
+        else {
+            balance = balance - bet;
+        }
+
+        }
+
+        std::cout << "Your final balance is:" << balance;
+
+
+return 0;
+}
